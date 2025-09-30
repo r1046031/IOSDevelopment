@@ -77,8 +77,7 @@ func calculate (numbers: Double...) -> (Double?) {
         return Double(sum) / Double(numbers.count)
     }
 }
-print(calculate(numbers:10,0,5))
+print("calculate(numbers:10,0,5)")
 print(calculate(numbers:4,5,6,-3))
 print(calculate(numbers:-3))
 print(calculate())
-Ò
