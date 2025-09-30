@@ -44,7 +44,16 @@ struct FlightView: View {
         }
         
         Grid {
+            VStack {
+                Text("Passenger")
+                Text("Drik Honstens")
+                Text("Class")
+                Text("Business")
+                Text("Flight date")
+                Text("1/09/2024")
+            }
             
+            //image
         }
     }
 }
