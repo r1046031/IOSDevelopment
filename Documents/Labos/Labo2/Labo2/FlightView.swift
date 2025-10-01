@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct FlightView: View {
+    let flightinfo: FlightInfo
     var body: some View {
+
         Grid {
             //hier de dingen die je van contentview wil gebruiken
             
@@ -17,28 +19,36 @@ struct FlightView: View {
             //onderaan: 1 gridrow
             GridRow {
                 HStack {
-                    Text("BCN")
-                        .foregroundStyle(.green)
+                    Text(flightinfo.departureCityCode)
+                        .foregroundStyle(.accent)
+                        .fontWeight(.bold)
                     Text("")
-                    Text("BRU")
-                        .foregroundStyle(.green)
+                    Text(flightinfo.arrivalCityCode)
+                        .foregroundStyle(.accent)
+                        .fontWeight(.bold)
                 }
             }
             GridRow {
-                HSTack {
-                    Text("Barcelona")
+                HStack {
+                    Text(flightinfo.departureCity)
+                        .foregroundStyle(.gray)
                     Image(systemName: "airplane")
-                    Text("Brussels")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxHeight: 50, alignment: .topLeading)
+                    Text(flightinfo.arrivalCity)
+                        .foregroundStyle(.gray)
                 }
             }
             GridRow {
-                Hstack {
-                    Text("13:08")
+                HStack {
+                    Text(flightinfo.departureTime)
                     Text("")
-                    Text("15:15")
+                    Text(flightinfo.arrivalTime)
                 }
             }
         }
+        Divider()
         
         Grid {
             GridRow {
@@ -50,31 +60,38 @@ struct FlightView: View {
             }
             GridRow {
                 HStack {
-                    Text("5N23A")
-                    Text("XD-30")
-                    Text("17C")
+                    Text(flightinfo.flightNumber)
+                    Text(flightinfo.gateNumber)
+                    Text(flightinfo.seatNumber)
                 }
             }
-        }
-        
+        }.padding()
+            .foregroundStyle(.white)
+            .background(.tint, in: RoundedRectangle(cornerRadius: 12))
+        Divider()
+
         Grid {
             GridRow {
                 VStack {
                     Text("Passenger")
-                    Text("Drik Honstens")
+                        .foregroundStyle(.gray)
+                    Text(flightinfo.passengerName)
                     Text("Class")
-                    Text("Business")
+                        .foregroundStyle(.gray)
+                    Text(flightinfo.passengerClass)
                     Text("Flight date")
-                    Text("1/09/2024")
+                        .foregroundStyle(.gray)
+                    Text(flightinfo.flightDate)
                 }
                 
                 //imageperson.crop.artframe
                 Image(systemName: "person.crop.artframe")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(maxHeight: 200, alignment: .topLeading)
             }
         }
+        Divider()
+        Spacer()
     }
-}
-
-#Preview {
-    FlightView()
 }
