@@ -10,50 +10,67 @@ import SwiftUI
 struct FlightView: View {
     var body: some View {
         Grid {
+            //hier de dingen die je van contentview wil gebruiken
+            
             //de top: 3 gridrows
             //midden: twee gridrows
             //onderaan: 1 gridrow
             GridRow {
-                Text("BCN")
-                Text("")
-                Text("BRU")
+                HStack {
+                    Text("BCN")
+                        .foregroundStyle(.green)
+                    Text("")
+                    Text("BRU")
+                        .foregroundStyle(.green)
+                }
             }
             GridRow {
-                Text("Barcelona")
-                Image("airplane")
-                Text("Brussels")
+                HSTack {
+                    Text("Barcelona")
+                    Image(systemName: "airplane")
+                    Text("Brussels")
+                }
             }
             GridRow {
-                Text("13:08")
-                Text("")
-                Text("15:15")
+                Hstack {
+                    Text("13:08")
+                    Text("")
+                    Text("15:15")
+                }
             }
         }
         
         Grid {
             GridRow {
-                Text("Flight")
-                Text("Gate")
-                Text("Seat")
+                HStack {
+                    Text("Flight")
+                    Text("Gate")
+                    Text("Seat")
+                }
             }
             GridRow {
-                Text("5N23A")
-                Text("XD-30")
-                Text("17C")
+                HStack {
+                    Text("5N23A")
+                    Text("XD-30")
+                    Text("17C")
+                }
             }
         }
         
         Grid {
-            VStack {
-                Text("Passenger")
-                Text("Drik Honstens")
-                Text("Class")
-                Text("Business")
-                Text("Flight date")
-                Text("1/09/2024")
+            GridRow {
+                VStack {
+                    Text("Passenger")
+                    Text("Drik Honstens")
+                    Text("Class")
+                    Text("Business")
+                    Text("Flight date")
+                    Text("1/09/2024")
+                }
+                
+                //imageperson.crop.artframe
+                Image(systemName: "person.crop.artframe")
             }
-            
-            //image
         }
     }
 }
