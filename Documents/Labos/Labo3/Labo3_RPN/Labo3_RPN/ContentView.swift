@@ -9,6 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        CalculateView(enteredNumber: <#Double#>)
+        CalculateView()
     }
 }

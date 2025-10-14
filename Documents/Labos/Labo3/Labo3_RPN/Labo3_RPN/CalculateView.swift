@@ -15,13 +15,14 @@ import SwiftUI
 
 struct CalculateView: View {
     @State var calcEngine = CalcEngine()
-    @State var enteredNumber: Double
+    @State var resultText = ""
+    @State var enteredNumber: String = ""
+    @State var enteredOperand: String = ""
     var body: some View {
         HStack {
             VStack {
-                @State var resultText = calcEngine.showResult()
-                TextEditor(text: $resultText)
-                    .frame(width: 200, height: 100)
+                TextEditor(text: .constant(resultText))
+                    .frame(width: 200, height: 250)
                     .disabled(true)
             }
             Grid {
@@ -29,53 +30,60 @@ struct CalculateView: View {
                     ForEach(7..<10) {
                         number in
                         Button("\(number)") {
-                            enteredNumber = Double(number)
+                            enteredNumber += String(number)
                         }
                     }
                     Button("/") {
-                        calcEngine.calculateResult(operand: "/")
+                        enteredOperand = "/"
                     }
                 }
                 GridRow {
                     ForEach(4..<7) {
                         number in
                         Button("\(number)") {
-                            enteredNumber = Double(number)
+                            enteredNumber += String(number)
                         }
                     }
                     Button("*") {
-                        calcEngine.calculateResult(operand: "*")
+                        enteredOperand = "*"
                     }
                 }
                 GridRow {
                     ForEach(1..<4) {
                         number in
                         Button("\(number)") {
-                            enteredNumber = Double(number)
+                            enteredNumber += String(number)
                         }
                     }
                     Button("-") {
-                        calcEngine.calculateResult(operand: "-")
+                        enteredOperand = "-"
                     }
                 }
                 GridRow {
                     Button("0") {
-                        enteredNumber = 0
+                        enteredNumber += "0"
                     }
                     Text("")
                     Text("")
                     Button("+") {
-                        calcEngine.calculateResult(operand: "+")
+                        enteredOperand = "+"
                     }
                 }
                 GridRow {
                     Button("Clear") {
-                        calcEngine.clearResult()
+                        calcEngine.clearStack()
+                        resultText = ""
+                        enteredOperand = ""
+                        enteredNumber = ""
                     }
                     .gridCellColumns(2)
 
                     Button("Enter") {
-                        calcEngine.addToStack(getal: enteredNumber)
+                        if(enteredOperand == "") {
+                            calcEngine.addToStack(getal: Double(enteredNumber)!)
+                        } else {
+                            calcEngine.calculateResult(operand: enteredOperand)
+                        }
                     }
                     .gridCellColumns(2)
                 }
@@ -83,12 +91,15 @@ struct CalculateView: View {
         }
         HStack {
             Button("Show Stack") {
-                //nog toe te voegen
+                enteredNumber = ""
+                enteredOperand = ""
+                calcEngine.clearResult()
+                resultText = calcEngine.showResult()
             }
         }
     }
 }
 
 #Preview {
-    
+    CalculateView()
 }

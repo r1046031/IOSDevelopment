@@ -12,30 +12,38 @@ import Foundation
     var stack = [Double]()
     
     func addToStack (getal: Double) {
-        stack[(stack.count) - 1] = getal
+        stack.append(getal)
     }
     
     func calculateResult (operand: String) {
+        var laatste = stack.popLast()
+        var voorlaatste = stack.popLast()
+        
         var resultCalc: Double
+        
         if operand == "+" {
-            resultCalc = stack[(stack.count) - 1] + stack[(stack.count) - 2]
+            resultCalc = laatste + voorlaatste
         } else if operand == "-" {
-            resultCalc = stack[(stack.count) - 1] - stack[(stack.count) - 2]
+            resultCalc = laatste - voorlaatste
         } else if operand == "*" {
-            resultCalc = stack[(stack.count) - 1] * stack[(stack.count) - 2]
+            resultCalc = laatse * voorlaatste
         } else {
-            resultCalc = stack[(stack.count) - 1] / stack[(stack.count) - 2]
+            resultCalc = laatse / voorlaatste
         }
         
         result += String(operand) + "\n" + String(resultCalc) + "\n"
     }
     
     func clearResult () {
-        stack = []
         result = ""
     }
     
+    func clearStack () {
+        clearResult()
+        stack = []
+    }
+    
     func showResult () -> (String) {
-        return result
+        return result + "\(stack)"
     }
 }
