@@ -8,7 +8,7 @@
 import Foundation
 
 @Observable class CalcEngine{
-    var result: String
+    var result: String = ""
     var stack = [Double]()
     
     func addToStack (getal: Double) {
@@ -16,7 +16,18 @@ import Foundation
     }
     
     func calculateResult (operand: String) {
+        var resultCalc: Double
+        if operand == "+" {
+            resultCalc = stack[(stack.count) - 1] + stack[(stack.count) - 2]
+        } else if operand == "-" {
+            resultCalc = stack[(stack.count) - 1] - stack[(stack.count) - 2]
+        } else if operand == "*" {
+            resultCalc = stack[(stack.count) - 1] * stack[(stack.count) - 2]
+        } else {
+            resultCalc = stack[(stack.count) - 1] / stack[(stack.count) - 2]
+        }
         
+        result += String(operand) + "\n" + String(resultCalc) + "\n"
     }
     
     func clearResult () {
@@ -24,7 +35,7 @@ import Foundation
         result = ""
     }
     
-    func showResult () {
-        
+    func showResult () -> (String) {
+        return result
     }
 }

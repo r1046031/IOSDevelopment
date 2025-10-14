@@ -5,70 +5,79 @@
 //  Created by Ilona Defevere on 08/10/2025.
 //
 
+//probleem met nummers ingeven zal ontstaan
+//opl
+//1  numbertext;removeFirst(numberText.count)
+//2  numbertext = "numberText" + "number"
+//3  result = "numbertext" + "result"
+
 import SwiftUI
 
 struct CalculateView: View {
-    @State var calcEngine = calcEngine()
-    @State var enteredNumber: Int
+    @State var calcEngine = CalcEngine()
+    @State var enteredNumber: Double
     var body: some View {
         HStack {
             VStack {
-                TextEditor(text: calcEngine.showResult())
-                    //nog te doen: afmetingen
-                    //te doen: not editable maken
+                @State var resultText = calcEngine.showResult()
+                TextEditor(text: $resultText)
+                    .frame(width: 200, height: 100)
+                    .disabled(true)
             }
             Grid {
                 GridRow {
                     ForEach(7..<10) {
                         number in
                         Button("\(number)") {
-                            enteredNumber = number
+                            enteredNumber = Double(number)
                         }
                     }
                     Button("/") {
-                        //nog toe te voegen
+                        calcEngine.calculateResult(operand: "/")
                     }
                 }
                 GridRow {
                     ForEach(4..<7) {
                         number in
                         Button("\(number)") {
-                            //nog toe te voegen
+                            enteredNumber = Double(number)
                         }
                     }
                     Button("*") {
-                        calcEngine.calculateResult("*")
+                        calcEngine.calculateResult(operand: "*")
                     }
                 }
                 GridRow {
                     ForEach(1..<4) {
                         number in
                         Button("\(number)") {
-                            //nog toe te voegen
+                            enteredNumber = Double(number)
                         }
                     }
                     Button("-") {
-                        calcEngine.calculateResult("-")
+                        calcEngine.calculateResult(operand: "-")
                     }
                 }
                 GridRow {
                     Button("0") {
-                        //nog toe te voegen
+                        enteredNumber = 0
                     }
                     Text("")
                     Text("")
                     Button("+") {
-                        calcEngine.calculateResult("+")
+                        calcEngine.calculateResult(operand: "+")
                     }
                 }
                 GridRow {
                     Button("Clear") {
                         calcEngine.clearResult()
-                    }.gridCellColumns(2)
+                    }
+                    .gridCellColumns(2)
 
                     Button("Enter") {
-                        calcEngine.addToStack()
-                    }.gridCellColumns(2)
+                        calcEngine.addToStack(getal: enteredNumber)
+                    }
+                    .gridCellColumns(2)
                 }
             }
         }
@@ -81,5 +90,5 @@ struct CalculateView: View {
 }
 
 #Preview {
-    CalculateView()
+    
 }
