@@ -17,7 +17,6 @@ struct CalculateView: View {
     @State var calcEngine = CalcEngine()
     @State var resultText = ""
     @State var enteredNumber: String = ""
-    @State var enteredOperand: String = ""
     var body: some View {
         HStack {
             VStack {
@@ -34,7 +33,12 @@ struct CalculateView: View {
                         }
                     }
                     Button("/") {
-                        enteredOperand = "/"
+                        if enteredNumber != "" {
+                            calcEngine.addToStack(getal: Double(enteredNumber)!)
+                            enteredNumber = ""
+                        }
+                        calcEngine.calculateResult(operand: "/")
+                        resultText = calcEngine.showResult()
                     }
                 }
                 GridRow {
@@ -45,7 +49,12 @@ struct CalculateView: View {
                         }
                     }
                     Button("*") {
-                        enteredOperand = "*"
+                        if enteredNumber != "" {
+                            calcEngine.addToStack(getal: Double(enteredNumber)!)
+                            enteredNumber = ""
+                        }
+                        calcEngine.calculateResult(operand: "*")
+                        resultText = calcEngine.showResult()
                     }
                 }
                 GridRow {
@@ -56,7 +65,12 @@ struct CalculateView: View {
                         }
                     }
                     Button("-") {
-                        enteredOperand = "-"
+                        if enteredNumber != "" {
+                            calcEngine.addToStack(getal: Double(enteredNumber)!)
+                            enteredNumber = ""
+                        }
+                        calcEngine.calculateResult(operand: "-")
+                        resultText = calcEngine.showResult()
                     }
                 }
                 GridRow {
@@ -66,24 +80,25 @@ struct CalculateView: View {
                     Text("")
                     Text("")
                     Button("+") {
-                        enteredOperand = "+"
+                        if enteredNumber != "" {
+                            calcEngine.addToStack(getal: Double(enteredNumber)!)
+                            enteredNumber = ""
+                        }
+                        calcEngine.calculateResult(operand: "+")
+                        resultText = calcEngine.showResult()
                     }
                 }
                 GridRow {
                     Button("Clear") {
                         calcEngine.clearStack()
                         resultText = ""
-                        enteredOperand = ""
                         enteredNumber = ""
                     }
                     .gridCellColumns(2)
 
                     Button("Enter") {
-                        if(enteredOperand == "") {
-                            calcEngine.addToStack(getal: Double(enteredNumber)!)
-                        } else {
-                            calcEngine.calculateResult(operand: enteredOperand)
-                        }
+                        calcEngine.addToStack(getal: Double(enteredNumber)!)
+                        enteredNumber = ""
                     }
                     .gridCellColumns(2)
                 }
@@ -91,9 +106,6 @@ struct CalculateView: View {
         }
         HStack {
             Button("Show Stack") {
-                enteredNumber = ""
-                enteredOperand = ""
-                calcEngine.clearResult()
                 resultText = calcEngine.showResult()
             }
         }

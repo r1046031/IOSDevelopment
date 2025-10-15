@@ -16,22 +16,29 @@ import Foundation
     }
     
     func calculateResult (operand: String) {
-        var laatste = stack.popLast()
-        var voorlaatste = stack.popLast()
-        
-        var resultCalc: Double
-        
-        if operand == "+" {
-            resultCalc = laatste + voorlaatste
-        } else if operand == "-" {
-            resultCalc = laatste - voorlaatste
-        } else if operand == "*" {
-            resultCalc = laatse * voorlaatste
+        //lengte controleren
+        if stack.count >= 2 {
+            var laatste: Double = Double(stack.popLast()!)
+            var voorlaatste: Double = Double(stack.popLast()!)
+            
+            var resultCalc: Double
+            
+            if operand == "+" {
+                resultCalc = laatste + voorlaatste
+            } else if operand == "-" {
+                resultCalc = laatste - voorlaatste
+            } else if operand == "*" {
+                resultCalc = laatste * voorlaatste
+            } else {
+                resultCalc = laatste / voorlaatste
+            }
+            
+            result += operand + "\n" + String(resultCalc) + "\n"
+            addToStack(getal: voorlaatste)
+            addToStack(getal: laatste)
         } else {
-            resultCalc = laatse / voorlaatste
+            result += "Not enough operands..."
         }
-        
-        result += String(operand) + "\n" + String(resultCalc) + "\n"
     }
     
     func clearResult () {
