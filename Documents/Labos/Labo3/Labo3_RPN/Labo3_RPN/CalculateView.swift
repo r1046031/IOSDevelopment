@@ -31,6 +31,7 @@ struct CalculateView: View {
                         Button("\(number)") {
                             enteredNumber += String(number)
                         }
+                        .colorInvert()
                     }
                     Button("/") {
                         if enteredNumber != "" {
@@ -47,6 +48,7 @@ struct CalculateView: View {
                         Button("\(number)") {
                             enteredNumber += String(number)
                         }
+                        .colorInvert()
                     }
                     Button("*") {
                         if enteredNumber != "" {
@@ -63,6 +65,7 @@ struct CalculateView: View {
                         Button("\(number)") {
                             enteredNumber += String(number)
                         }
+                        .colorInvert()
                     }
                     Button("-") {
                         if enteredNumber != "" {
@@ -77,6 +80,7 @@ struct CalculateView: View {
                     Button("0") {
                         enteredNumber += "0"
                     }
+                    .colorInvert()
                     Text("")
                     Text("")
                     Button("+") {

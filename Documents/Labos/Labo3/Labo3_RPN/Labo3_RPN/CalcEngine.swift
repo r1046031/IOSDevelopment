@@ -10,9 +10,11 @@ import Foundation
 @Observable class CalcEngine{
     var result: String = ""
     var stack = [Double]()
+    var enteredNumbers = [Double]()
     
     func addToStack (getal: Double) {
         stack.append(getal)
+        enteredNumbers.append(getal)
     }
     
     func calculateResult (operand: String) {
@@ -33,11 +35,11 @@ import Foundation
                 resultCalc = laatste / voorlaatste
             }
             
-            result += operand + "\n" + String(resultCalc) + "\n"
-            addToStack(getal: voorlaatste)
-            addToStack(getal: laatste)
+            result = String(resultCalc) + "\n" + operand + "\n" + result
+            addToStack(getal: resultCalc)
+            enteredNumbers.popLast()
         } else {
-            result += "Not enough operands..."
+            result = "Not enough operands..." + "\n" + operand + "\n" + result
         }
     }
     
@@ -51,6 +53,6 @@ import Foundation
     }
     
     func showResult () -> (String) {
-        return result + "\(stack)"
+        return result + "\(enteredNumbers)"
     }
 }
