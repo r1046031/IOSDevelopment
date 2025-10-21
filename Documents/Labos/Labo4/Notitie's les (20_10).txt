@@ -1,0 +1,37 @@
+Notitie's les (20/10)
+
+
+de data (bv. ingelogde gebruiker) bijhouden als state
+
+slechts een view kan eigenaar zijn van de state
+
+Binding is nodig voor een state variable door te geven aan een andere view
+
+if let selectedName = selectedname is hetzelfde als if selectedname != nil
+
+
+sidebar detail, sidebar contentdetail
+Navigationsplitview geeft alleen maar verwijzingen
+
+Altijd een variabele meegeven
+
+NavigationStack
+
+NavigationLink
+Als je teruggaat dan wordt je selectedvalue van je list weer niets
+
+Navigationstack, splitview en co belangrijk op examen
+
+klasse observable maken zodat bij elke wijziging je view opnieuw wordt opgemaakt
+
+Environment -> x eruithalen van dat type, een type die je overal kan gebruiken
+Op examen types dat je moet gebruiken worden meegegeven
+
+Als iets gaat wijzigen -> als binding weergeven
+Als iets niet kan wijzigen -> gewoon als var
+
+
+Ophalen van data -> aanroepen van een API
+
+In deze opdracht -> json
+Toekomstig ga je ook moeten kijken qua threading dat de data direct wordt weergegeven in de view
