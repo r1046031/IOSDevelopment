@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct ListStadionView: View {
+//    var stadiums = dataStore.getAllLocations()
+//    
+//    @State var selectedStadion: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+//        VStack {
+//            List(stadiums, id: \.self) {
+//                ForEach(stadiums) { stadium in
+//                    Text(stadium)
+//                }
+//            }
+//        }
     }
-}
-
-#Preview {
-    ListStadionView()
 }
