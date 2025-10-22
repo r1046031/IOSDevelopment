@@ -83,5 +83,26 @@ NavigationSplitView {
     }
 }
 
+voorbeeld lade json datastruct
+class DataManager: ObservableObject {
+    @Published var producten: [Product] = []
+
+    init() {
+        loadJSON()
+    }
+
+    func loadJSON() {
+        if let url = Bundle.main.url(forResource: "data", withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: url)
+                let decodedData = try JSONDecoder().decode([Product].self, from: data)
+                self.producten = decodedData
+            } catch {
+                print("Fout bij laden JSON:", error)
+            }
+        }
+    }
+}
+
 
 
