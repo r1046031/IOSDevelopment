@@ -60,6 +60,28 @@ struct LandmarkList: View {
     }
 }
 
+voorbeeld navigationstack, splitview en link
+
+NavigationSplitView {
+    // 1️⃣ Zijbalk (navigatie)
+    List(items, selection: $selectedItem) { item in
+        NavigationLink(item.name, value: item)
+    }
+} content: {
+    // 2️⃣ Middendeel (hoofdinhoud)
+    if let item = selectedItem {
+        Text("Inhoud van \(item.name)")
+    } else {
+        Text("Selecteer iets in de zijbalk")
+    }
+} detail: {
+    // 3️⃣ Rechterdeel (detail van iets uit de inhoud)
+    if let detail = selectedDetail {
+        Text("Details van \(detail)")
+    } else {
+        Text("Nog geen detail gekozen")
+    }
+}
 
 
 
