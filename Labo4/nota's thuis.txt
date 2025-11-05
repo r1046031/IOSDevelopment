@@ -1,0 +1,108 @@
+Data uit JSON over wedstrijden WK Qatar uitlezen
+Volgende velden:
+
+let matchNumber, roundNumber: Int
+ let dateUTC, location, homeTeam, awayTeam: String
+ let group: String?
+ let homeTeamScore, awayTeamScore: Int?
+
+Een view die je eerst ziet, na klikken op button zie je een andere view
+Aparte klasse voor de JSON -> WKDataStore, met functies om bv. alle landen uit de array te halen
+
+Eerste view -> navigatie via Next knop met een NavigationLink in een NavigationStack
+
+List(data: RandomAccessCollection, id: RandomAccessCollection.Element.
+Hashable, selection: Binding<Hashable>, rowContent:
+(RandomAccessCollection.Element) -> View)
+
+Tweede view = NavigationSplitview met stadions
+
+Voorbeeld List codes:
+        VStack {
+            List(names, id: \.self) {
+                ForEach(names, id: \.description) { name in
+                    Text(name)
+                }
+            }
+
+
+            TextField("Add Name", text: $nameToAdd)
+                .onSubmit {
+                    if !nameToAdd.isEmpty {
+                        names.append(nameToAdd)
+                        nameToAdd = ""
+                    }
+                }
+        }
+
+de lijst leegmaken via bijvoorbeeld
+names.removeAll()
+
+Data uit json:
+bv struct
+
+struct Landmark: Hashable, Codable {
+	var name: String	
+...
+}
+
+gebruiken in view door bijvoorbeeld:
+#Preview {
+	LandmarkRow(landmark: landmarks[0])
+}
+
+struct LandmarkList: View {
+    var body: some View {
+        List(landmarks, id: \.id) { landmark in
+
+
+        }
+    }
+}
+
+voorbeeld navigationstack, splitview en link
+
+NavigationSplitView {
+    // 1️⃣ Zijbalk (navigatie)
+    List(items, selection: $selectedItem) { item in
+        NavigationLink(item.name, value: item)
+    }
+} content: {
+    // 2️⃣ Middendeel (hoofdinhoud)
+    if let item = selectedItem {
+        Text("Inhoud van \(item.name)")
+    } else {
+        Text("Selecteer iets in de zijbalk")
+    }
+} detail: {
+    // 3️⃣ Rechterdeel (detail van iets uit de inhoud)
+    if let detail = selectedDetail {
+        Text("Details van \(detail)")
+    } else {
+        Text("Nog geen detail gekozen")
+    }
+}
+
+voorbeeld lade json datastruct
+class DataManager: ObservableObject {
+    @Published var producten: [Product] = []
+
+    init() {
+        loadJSON()
+    }
+
+    func loadJSON() {
+        if let url = Bundle.main.url(forResource: "data", withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: url)
+                let decodedData = try JSONDecoder().decode([Product].self, from: data)
+                self.producten = decodedData
+            } catch {
+                print("Fout bij laden JSON:", error)
+            }
+        }
+    }
+}
+
+
+

@@ -1,0 +1,16 @@
+TextEditor
+Afmetingen:
+
+.frame(width: 200, height: 100)
+
+Responsive maken
+
+.frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.3)
+
+Niet bewerkbaar maken:
+
+.disabled(true)
+-> je kunt wel nog tekst selecteren
+
+.frame(maxWidth: .infinity, alignment: .leading)
+-> je kunt geen tekst meer selecteren
