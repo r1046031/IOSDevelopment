@@ -8,15 +8,34 @@
 import SwiftUI
 
 struct UurroosterDetailView: View {
-    @Environment(UurroosterDataStore.self) var uurroosterDataStore
+    @State var selectedItem: String?
     
     var body: some View {
-        VStack {
-            var uurrooster = uurroosterDataStore.getUurrooster()
-            
-            for item in uurroosterDataStore.getUurrooster() {
-                Text(uurroosterDataStore)
-            }
-        }
+        //        var selectedItemFromUurrooster = uurroosterDataStore.getEvent(id: selectedItem.id)
+        //
+        //        VStack {
+        //            VStack {
+        //                VStack {
+        //                    Text(selectedItemFromUurrooster.title)
+        //                    Text(selectedItemFromUurrooster.type)
+        //                }
+        //                VStack {
+        //                    Text(selectedItemFromUurrooster.location)
+        //                }
+        //                HStack {
+    //                        VStack {
+    //                            Text("Start")
+        //                        Text("Einde")
+    //                        }
+    //                        VStack {
+    //                            Text(selectedItemFromUurrooster.startDateTime)
+    //                            Text(selectedItemFromUurrooster.endDateTime)
+    //                        }
+        //                }
+        //                VStack {
+        //                     Text()
+        //                }
+        //            }
+        //        }
     }
 }

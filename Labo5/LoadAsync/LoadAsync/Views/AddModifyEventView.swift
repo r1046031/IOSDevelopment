@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct AddModifyEventView: View {
+    @Environment(UurroosterDataStore.self) var uurroosterDataStore
+    @State var selectedItem: String?
+    
     var body: some View {
-        
+
     }
 }

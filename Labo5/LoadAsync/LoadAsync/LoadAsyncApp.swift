@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct LoadAsyncApp: App {
+    @State var uurroosterDataStore = UurroosterDataStore()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environment(uurroosterDataStore)
         }
     }
 }

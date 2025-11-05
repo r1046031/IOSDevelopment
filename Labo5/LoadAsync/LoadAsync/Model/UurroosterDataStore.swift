@@ -73,10 +73,6 @@ class UurroosterDataStore {
             uurrooster = [EventModel]()
         }
     }
-    
-    func getUurrooster() -> [EventModel] {
-        return uurrooster
-    }
 
 }
 
