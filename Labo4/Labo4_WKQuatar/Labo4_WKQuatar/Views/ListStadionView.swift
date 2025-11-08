@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct ListStadionView: View {
-//    var stadiums = dataStore.getAllLocations()
-//    
-//    @State var selectedStadion: String
+    @Environment(WKDataStore.self) var wkDataStore
+    @Binding var selectedTeam: String?
+    @State var selectedLocation: String?
     
     var body: some View {
-//        VStack {
-//            List(stadiums, id: \.self) {
-//                ForEach(stadiums) { stadium in
-//                    Text(stadium)
-//                }
-//            }
-//        }
+        NavigationStack {
+            List(wkDataStore.getAllLocations(), id: \.self, selection: $selectedLocation){
+                location in
+                Text(location)
+            }
+            if let selectedLocation = selectedLocation {
+                ScoreListView(selectedTeam: $selectedTeam, selectedLocation: $selectedLocation)
+            }
+        }
     }
 }

@@ -8,11 +8,31 @@
 import SwiftUI
 
 struct ScoreListView: View {
+    @Binding var selectedTeam: String?
+    @Binding var selectedLocation: String?
+    @State var selectedMatch: String?
+    @Environment(WKDataStore.self) var wkDataStore
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        var results = wkDataStore.getAllResultsByLocation(selectedLocation: "\($selectedLocation)")
+        VStack {
+            ForEach(results, id: \.matchNumber) { result in
+                NavigationStack {
+                    Grid {
+                        GridRow {
+                            Text(results.homeTeam)
+                            Text("X")
+                            Text(results[0].homeTeam)
+                        }
+                        GridRow {
+                            Text(results.homeTeamScore)
+                            Text("-")
+                            Text(results[0].awayTeamScore)
+                        }
+                    }
+                }
+            }
+        }
+        
     }
-}
-
-#Preview {
-    ScoreListView()
 }

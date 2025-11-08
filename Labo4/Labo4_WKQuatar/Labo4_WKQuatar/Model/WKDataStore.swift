@@ -37,8 +37,11 @@ import Foundation
     }
     
     func getAllLocations() -> [String] {
+        let locationsWithoutTba = wkResults.filter {
+            $0.location != "TBA"
+        }
         //map
-        let locations = wkResults.map {
+        let locations = locationsWithoutTba.map {
             $0.location
         }
         
@@ -46,14 +49,13 @@ import Foundation
         return Array(Set(locations)).sorted()
     }
     
-    func getAllResultsByLocation(selectedLocation: String) {
+    func getAllResultsByLocation(selectedLocation: String) -> [WKResult] {
         //filter
         let matchFromLocation = wkResults.filter {
             $0.location == selectedLocation
         }
-        //map
         
         //set
-        
+        return matchFromLocation
     }
 }
