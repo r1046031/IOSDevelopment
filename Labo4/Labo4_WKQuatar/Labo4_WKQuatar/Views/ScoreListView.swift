@@ -10,29 +10,30 @@ import SwiftUI
 struct ScoreListView: View {
     @Binding var selectedTeam: String?
     @Binding var selectedLocation: String?
-    @State var selectedMatch: String?
+    @Binding var selectedMatch: String?
     @Environment(WKDataStore.self) var wkDataStore
     
     var body: some View {
         var results = wkDataStore.getAllResultsByLocation(selectedLocation: "\($selectedLocation)")
         VStack {
             ForEach(results, id: \.matchNumber) { result in
-                NavigationStack {
+                    VStack {
                     Grid {
                         GridRow {
-                            Text(results.homeTeam)
+                            Text(result.homeTeam)
                             Text("X")
-                            Text(results[0].homeTeam)
+                            Text(result.awayTeam)
                         }
-                        GridRow {
-                            Text(results.homeTeamScore)
-                            Text("-")
-                            Text(results[0].awayTeamScore)
+                        if(result.homeTeamScore != nil) {
+//                            GridRow {
+//                                Text(result.homeTeamScore)
+//                                Text("-")
+//                                Text(result.awayTeamScore)
+//                              }
                         }
                     }
                 }
             }
         }
-        
     }
 }

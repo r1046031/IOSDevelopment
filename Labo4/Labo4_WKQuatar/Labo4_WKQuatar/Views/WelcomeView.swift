@@ -10,7 +10,6 @@ import SwiftUI
 struct WelcomeView: View {
     @Environment(WKDataStore.self) var wkDataStore
     @State var selectedTeam: String? = nil
-    @State var selectedLocation: String? = nil
     
     var body: some View {
         NavigationStack {
@@ -24,7 +23,7 @@ struct WelcomeView: View {
                 }
                 if let selectedTeam = selectedTeam {
                     NavigationLink(
-                        destination: ResultsView(selectedTeam: $selectedTeam, selectedLocation: $selectedLocation),
+                        destination: ResultsView(selectedTeam: $selectedTeam),
                         label: {
                             Text("Enter")
                         }

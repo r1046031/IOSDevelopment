@@ -58,4 +58,14 @@ import Foundation
         //set
         return matchFromLocation
     }
+    
+    func getMatchResults(selectedMatch: Int) -> [WKResult] {
+        //filter
+        let matchResults = wkResults.filter {
+            $0.matchNumber == selectedMatch
+        }
+        
+        //set
+        return matchResults
+    }
 }

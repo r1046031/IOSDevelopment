@@ -9,15 +9,20 @@ import SwiftUI
 
 struct ResultsView: View {
     @Binding var selectedTeam: String?
-    @Binding var selectedLocation: String?
+    @State var selectedLocation: String?
+    @State var selectedMatch: String?
     
     var body: some View {
         NavigationSplitView {
-            ListStadionView(selectedTeam: $selectedTeam)
+            ListStadionView(selectedLocation: $selectedLocation)
         } content : {
-            ScoreListView(selectedTeam: $selectedTeam, selectedLocation: $selectedLocation)
+            if let selectedLocation = selectedLocation {
+                ScoreListView(selectedTeam: $selectedTeam, selectedLocation: $selectedLocation, selectedMatch: $selectedMatch)
+            }
         } detail: {
-            DetailGameView()
+            if let selectedMatch = selectedMatch {
+                DetailGameView(selectedMatch: $selectedMatch)
+            }
         }
     }
 }
