@@ -14,26 +14,27 @@ struct ScoreListView: View {
     @Environment(WKDataStore.self) var wkDataStore
     
     var body: some View {
-        var results = wkDataStore.getAllResultsByLocation(selectedLocation: "\($selectedLocation)")
+        let results = wkDataStore.getAllResultsByLocation(selectedLocation: "\($selectedLocation)")
         VStack {
-            ForEach(results, id: \.matchNumber) { result in
-                    VStack {
-                    Grid {
-                        GridRow {
-                            Text(result.homeTeam)
-                            Text("X")
-                            Text(result.awayTeam)
-                        }
-                        if(result.homeTeamScore != nil) {
-//                            GridRow {
-//                                Text(result.homeTeamScore)
-//                                Text("-")
-//                                Text(result.awayTeamScore)
-//                              }
-                        }
-                    }
-                }
-            }
+            Text(results[0].awayTeam)
+//            ForEach(results, id: \.matchNumber) { result in
+//                VStack {
+//                    Grid {
+//                        GridRow {
+//                            Text(result.homeTeam)
+//                            Text("X")
+//                            Text(result.awayTeam)
+//                        }
+////                        if(result.homeTeamScore != nil) {
+////                            GridRow {
+////                                Text(result.homeTeamScore)
+////                                Text("-")
+////                                Text(result.awayTeamScore)
+////                              }
+////                        }
+//                    }
+//                }
+//            }
         }
     }
 }
