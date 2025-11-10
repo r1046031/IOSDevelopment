@@ -9,24 +9,23 @@ import SwiftUI
 
 struct UurroosterListView: View {
     @Environment(UurroosterDataStore.self) var uurroosterDataStore
-    @State var selectedItem: String?
+    @State var selectedAct: EventModel?
     
     var body: some View {
         HStack() {
             NavigationSplitView {
                 VStack {
-                    List(uurroosterDataStore.uurrooster, selection: $selectedItem) { item in
-                        NavigationLink(destination: AddModifyEventView(selectedItem: item.id)) {
-                            VStack {
-                                Text(uurroosterDataStore.uurrooster.startDateTime)
-                                    .fontWeight(.bold)
-                                Text(uurroosterDataStore.uurrooster.title)
-                            }
+                    List(uurroosterDataStore.uurrooster, selection: $selectedAct) { item in
+                        VStack {
+                            Text("\(item.startDateTime)")
+                            Text(item.title)
                         }
                     }
                 }
             } detail: {
-                UurroosterDetailView(selectedItem: $selectedItem).task(wait)
+                if let selectedAct = selectedAct {
+                    UurroosterDetailView(selectedAct: $selectedAct)
+                }
             }
         }
     }

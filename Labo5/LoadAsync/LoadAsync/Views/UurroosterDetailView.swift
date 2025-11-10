@@ -8,34 +8,34 @@
 import SwiftUI
 
 struct UurroosterDetailView: View {
-    @State var selectedItem: String?
+    @Binding var selectedAct: EventModel?
     
     var body: some View {
-        //        var selectedItemFromUurrooster = uurroosterDataStore.getEvent(id: selectedItem.id)
-        //
-        //        VStack {
-        //            VStack {
-        //                VStack {
-        //                    Text(selectedItemFromUurrooster.title)
-        //                    Text(selectedItemFromUurrooster.type)
-        //                }
-        //                VStack {
-        //                    Text(selectedItemFromUurrooster.location)
-        //                }
-        //                HStack {
-    //                        VStack {
-    //                            Text("Start")
-        //                        Text("Einde")
-    //                        }
-    //                        VStack {
-    //                            Text(selectedItemFromUurrooster.startDateTime)
-    //                            Text(selectedItemFromUurrooster.endDateTime)
-    //                        }
-        //                }
-        //                VStack {
-        //                     Text()
-        //                }
-        //            }
-        //        }
+//        var selectedItemFromUurrooster = uurroosterDataStore.getEvent(id: "\(selectedAct.id)")
+//
+//        VStack {
+//            VStack {
+//                VStack {
+//                    Text(selectedItemFromUurrooster.title)
+//                    Text(selectedItemFromUurrooster.type)
+//                }
+//                VStack {
+//                    Text(selectedItemFromUurrooster.location)
+//                }
+//                HStack {
+//                    VStack {
+//                        Text("Start")
+//                        Text("Einde")
+//                    }
+//                    VStack {
+//                        Text(selectedItemFromUurrooster.startDateTime)
+//                        Text(selectedItemFromUurrooster.endDateTime)
+//                    }
+//                }
+//                VStack {
+//                     Text()
+//                }
+//            }
+//        }
     }
 }
