@@ -14,6 +14,7 @@ struct ScoreListView: View {
     @Environment(WKDataStore.self) var wkDataStore
     
     var body: some View {
+        //ik zit vast met dat als ik in mijn wkDataStore een array return in een functie, dat hij het niet herkent als een array (van wkresult)
         let results = wkDataStore.getAllResultsByLocation(selectedLocation: "\($selectedLocation)")
         VStack {
             Text(results[0].awayTeam)
