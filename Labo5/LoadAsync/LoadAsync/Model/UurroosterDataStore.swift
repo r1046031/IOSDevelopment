@@ -12,7 +12,7 @@ class UurroosterDataStore {
     var uurrooster : [EventModel]
     
     init() {
-        uurrooster = []
+        uurrooster = [EventModel]()
     }
     
     private func sort() {
@@ -26,8 +26,7 @@ class UurroosterDataStore {
     }
     
     func updateEvent(event: EventModel ){
-        var eventToUpdate = getEventIndex(id: event.id);
-        uurrooster[eventToUpdate] = event
+        uurrooster[getEventIndex(id: event.id)] = event
     }
     
     func deleteEvent(id: String) {
@@ -62,9 +61,9 @@ class UurroosterDataStore {
             print("⏳ Simulating 2-second load delay...")
             try await Task.sleep(for: .seconds(2)) // Simulate long load
             let data: [EventModelJson] = try load("uurrooster.json")
-            uurrooster = data.map {
-                $0.toEventModel()
-            }
+            uurrooster = data.map ({ evenModelJson in
+                evenModelJson.toEventModel()
+            })
             sort()
             print("✅ Data loaded successfully.")
             
@@ -77,7 +76,7 @@ class UurroosterDataStore {
 }
 
 private struct EventModelJson: Hashable, Codable, Identifiable {
-    var id:String = ""
+    var id: String = ""
     var allDay: Bool = false
     var title: String = ""
     var location: String? = nil

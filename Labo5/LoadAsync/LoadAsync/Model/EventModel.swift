@@ -9,7 +9,7 @@ import Foundation
 
 @Observable
 class EventModel: Identifiable, Hashable {
-    var id:String = ""
+    var id: String = ""
     var allDay: Bool = false
     var title: String = ""
     var location: String = ""

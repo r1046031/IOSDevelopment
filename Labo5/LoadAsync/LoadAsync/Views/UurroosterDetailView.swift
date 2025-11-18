@@ -8,34 +8,48 @@
 import SwiftUI
 
 struct UurroosterDetailView: View {
+    @Environment(UurroosterDataStore.self) var uurroosterDataStore
     @Binding var selectedAct: EventModel?
+    let dateFormatter = DateFormatter()
+    
+    init() {
+        dateFormatter.dateFormat = "yy-MM-dd"
+    }
     
     var body: some View {
-//        var selectedItemFromUurrooster = uurroosterDataStore.getEvent(id: "\(selectedAct.id)")
-//
-//        VStack {
-//            VStack {
-//                VStack {
-//                    Text(selectedItemFromUurrooster.title)
-//                    Text(selectedItemFromUurrooster.type)
-//                }
-//                VStack {
-//                    Text(selectedItemFromUurrooster.location)
-//                }
-//                HStack {
-//                    VStack {
-//                        Text("Start")
-//                        Text("Einde")
-//                    }
-//                    VStack {
-//                        Text(selectedItemFromUurrooster.startDateTime)
-//                        Text(selectedItemFromUurrooster.endDateTime)
-//                    }
-//                }
-//                VStack {
-//                     Text()
-//                }
-//            }
-//        }
+        if let selectedAct = selectedAct {
+            var selectedItemFromUurrooster = uurroosterDataStore.getEvent(id: "\(selectedAct.id)")
+            VStack(alignment: .center) {
+                VStack {
+                    Text("\(selectedItemFromUurrooster.title)")
+                    Text("\(selectedItemFromUurrooster.type)")
+                }
+                .foregroundStyle(Color.white)
+                .background(Color.red)
+                Divider()
+                HStack {
+                    VStack {
+                        Text(selectedItemFromUurrooster.location)
+                    }
+                    Grid {
+                        GridRow {
+                            Text("Start")
+                            Text("")
+                            Text(dateFormatter.string(from: selectedAct.startDateTime))
+                        }
+                        GridRow {
+                            Text("Einde")
+                            Text("")
+                            Text(dateFormatter.string(from: selectedAct.endDateTime))
+                        }
+                    }
+                }
+                Divider()
+                HStack {
+                    Text("&copy;")
+                }
+            }
+            .padding()
+        }
     }
 }
