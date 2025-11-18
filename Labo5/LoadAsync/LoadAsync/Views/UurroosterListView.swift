@@ -15,7 +15,7 @@ struct UurroosterListView: View {
     let dateFormatter = DateFormatter()
     
     init() {
-        dateFormatter.dateFormat = "yy-MM-dd"
+        dateFormatter.dateFormat = "yy-MM-dd HH:mm:ss"
     }
     
     var body: some View {
@@ -26,12 +26,14 @@ struct UurroosterListView: View {
                 } else {
                     VStack(alignment: .leading) {
                         List(uurroosterDataStore.uurrooster, id: \.self, selection: $selectedAct) { item in
-                            VStack {
+                            VStack(alignment: .leading) {
                                 Text(dateFormatter.string(from: item.startDateTime))
                                     .multilineTextAlignment(.leading)
                                 Text("\(item.title)")
+                                    .multilineTextAlignment(.leading)
                             }
                         }
+                        .listRowBackground(Color.red)
                     }
                 }
             } detail: {

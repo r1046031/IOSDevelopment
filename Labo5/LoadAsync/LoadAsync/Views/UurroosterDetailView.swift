@@ -10,11 +10,11 @@ import SwiftUI
 struct UurroosterDetailView: View {
     @Environment(UurroosterDataStore.self) var uurroosterDataStore
     @Binding var selectedAct: EventModel?
-    let dateFormatter = DateFormatter()
-    
-    init() {
-        dateFormatter.dateFormat = "yy-MM-dd"
-    }
+    let dateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateFormat = "yy-MM-dd"
+        return df
+    }()
     
     var body: some View {
         if let selectedAct = selectedAct {
@@ -22,16 +22,15 @@ struct UurroosterDetailView: View {
             VStack(alignment: .center) {
                 VStack {
                     Text("\(selectedItemFromUurrooster.title)")
-                    Text("\(selectedItemFromUurrooster.type)")
                 }
                 .foregroundStyle(Color.white)
                 .background(Color.red)
                 Divider()
-                HStack {
-                    VStack {
+                VStack(alignment: .leading) {
+                    VStack(alignment: .leading) {
                         Text(selectedItemFromUurrooster.location)
                     }
-                    Grid {
+                    Grid(alignment: .center) {
                         GridRow {
                             Text("Start")
                             Text("")
