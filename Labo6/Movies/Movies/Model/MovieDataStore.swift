@@ -9,11 +9,11 @@ import Foundation
 
 @Observable
 class MovieDataStore {
-    var movies : [Movie]
+    var movies = Movies()
     
-    init(){
-        movies = [Movie]()
-    }
+//    init(){
+//        
+//    }
     
 //    func getMovies() -> [Movie] {
 //        return movies
@@ -21,7 +21,7 @@ class MovieDataStore {
     
     func getMovies(actor: Actor) -> [Movie] {
         //filter -> eerst de group die nil is eruit halen
-        let moviesFromActor = movies.filter { movie in
+        let moviesFromActor = movies.movies.filter { movie in
             movie.actors.contains { actorFromMovie in
                         actorFromMovie.firstName == actor.firstName &&
                         actorFromMovie.lastName == actor.lastName
@@ -34,7 +34,7 @@ class MovieDataStore {
     
     func getMovies(director: Director) -> [Movie] {
         //filter -> eerst de group die nil is eruit halen
-        let moviesFromDirector = movies.filter {
+        let moviesFromDirector = movies.movies.filter {
             $0.director == director
         }
         
@@ -56,7 +56,7 @@ class MovieDataStore {
 //            //set voor de dubbele waarden eruit te halen
 //            return moviesFromDirector.actors()
         
-        let actors = movies
+        let actors = movies.movies
             .filter { $0.director == director }   // stap 1
             .flatMap { $0.actors }                // stap 2: flatten array van actors
            
@@ -65,7 +65,7 @@ class MovieDataStore {
     }
     
     private func sort() {
-        self.movies = Array(Set(self.movies)).sorted {
+        self.movies.movies = Array(Set(self.movies.movies)).sorted {
             $0.title < $1.title
         }
     }
