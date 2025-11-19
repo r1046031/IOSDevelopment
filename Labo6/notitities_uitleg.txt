@@ -1,0 +1,8 @@
+lab 6: movies
+
+navigationstack -> aantal schermen bovenop elkaar
+navigationstack door middel van een path -> voor value based navigeren
+
+voorbeeld in de les
+view met navigationstack met vstack met daarin twee navigationlinks, een enum klasse voor de routes (cleanere manier dan try met alle routes erin en catch voor alle routes) die een environment variabele is. er is een klasse PathStore (observable), die wordt gebruikt in de view als state variable 
+onder de vstack een .navigationdestination met een switch statement
