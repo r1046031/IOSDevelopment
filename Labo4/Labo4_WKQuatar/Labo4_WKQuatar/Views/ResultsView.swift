@@ -10,7 +10,7 @@ import SwiftUI
 struct ResultsView: View {
     @Binding var selectedTeam: String?
     @State var selectedLocation: String?
-    @State var selectedMatch: String?
+    @State var selectedMatch: WKResult?
     
     var body: some View {
         NavigationSplitView {

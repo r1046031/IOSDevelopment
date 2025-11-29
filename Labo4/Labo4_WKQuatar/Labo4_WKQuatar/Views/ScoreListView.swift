@@ -10,32 +10,45 @@ import SwiftUI
 struct ScoreListView: View {
     @Binding var selectedTeam: String?
     @Binding var selectedLocation: String?
-    @Binding var selectedMatch: String?
+    @Binding var selectedMatch: WKResult?
     @Environment(WKDataStore.self) var wkDataStore
     
     var body: some View {
-        //ik zit vast met dat als ik in mijn wkDataStore een array return in een functie, dat hij het niet herkent als een array (van wkresult)
-        let results = wkDataStore.getAllResultsByLocation(selectedLocation: "\($selectedLocation)")
+        let results = wkDataStore.getAllResultsByLocation(selectedLocation: "\(selectedLocation ?? "")")
+        
         VStack {
-            Text(results[0].awayTeam)
-//            ForEach(results, id: \.matchNumber) { result in
-//                VStack {
-//                    Grid {
-//                        GridRow {
-//                            Text(result.homeTeam)
-//                            Text("X")
-//                            Text(result.awayTeam)
-//                        }
-////                        if(result.homeTeamScore != nil) {
-////                            GridRow {
-////                                Text(result.homeTeamScore)
-////                                Text("-")
-////                                Text(result.awayTeamScore)
-////                              }
-////                        }
-//                    }
-//                }
-//            }
+            List(results, id: \.self, selection: $selectedMatch){
+                result in
+                VStack {
+                    HStack {
+                        Grid {
+                            GridRow {
+                                if(result.homeTeam == selectedTeam) {
+                                    Text(result.homeTeam)
+                                        .foregroundColor(Color.red)
+                                } else {
+                                    Text(result.homeTeam)
+                                }
+                                Text("X")
+                                if(result.awayTeam == selectedTeam) {
+                                    Text(result.awayTeam)
+                                        .foregroundColor(Color.red)
+                                } else {
+                                    Text(result.awayTeam)
+                                }
+                            }
+                            if(result.homeTeamScore != nil) {
+                                GridRow {
+                                    Text(String(result.homeTeamScore!))
+                                    Text("-")
+                                    Text(String(result.awayTeamScore!))
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+            }
         }
     }
-}
