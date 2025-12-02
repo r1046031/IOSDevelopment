@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MovieActorView: View {
+    
     var body: some View {
         
     }
