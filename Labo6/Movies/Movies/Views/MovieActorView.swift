@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct MovieActorView: View {
+    @Binding var selectedActor: Actor?
     
     var body: some View {
-        
+        if let selectedActor = selectedActor {
+            VStack {
+                Text("Actor: " selectedActor.firstName + " " + selectedActor.lastName)
+            }
+            Divider()
+        }
     }
 }
