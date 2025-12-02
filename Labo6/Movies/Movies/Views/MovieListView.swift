@@ -13,7 +13,7 @@ struct MovieListView: View {
     @State var selectedMovie: Movie?
     
     var body: some View {
-        Group {
+        NavigationStack {
             if(loading) {
                 Text("loading")
             }
@@ -25,8 +25,9 @@ struct MovieListView: View {
                             .fontWeight(.bold)
                         Text(movie.description)
                     }
-                }.onTapGesture {
-                    NavigationLink(destination: MovieInformationView(selectedMovie: $selectedMovie))
+                }
+                .navigationDestination(item: $selectedMovie) { movie in
+                    MovieInformationView(selectedMovie: $selectedMovie)
                 }
             }
         }

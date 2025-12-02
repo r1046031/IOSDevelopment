@@ -15,40 +15,39 @@ struct MovieInformationView: View {
     var body: some View {
         if let selectedMovie = selectedMovie {
             VStack {
-                HStack {
+                VStack {
                     Text(selectedMovie.title)
+                        .font(.system(size: 24))
+                        .foregroundColor(.red)
                     Text(selectedMovie.description)
                 }
                 Divider()
-                HStack {
+                Spacer()
                     VStack {
                         Text("Actors")
                         List(selectedMovie.actors, id: \.self, selection: $selectedActor){
                             actor in
-                            NavigationLink(destination: MovieActorView()) {
+                            NavigationLink(destination: MovieActorView(selectedActor: $selectedActor)) {
                                 VStack {
                                     Text(actor.firstName + " " + actor.lastName)
+                                        .foregroundColor(.red)
                                 }
                             }
                         }
                     }
-                    Spacer()
-                }
+                
                 Divider()
                 HStack {
                     VStack {
                         Text("Director")
                         Text("\(selectedMovie.director.firstName)" + " " + "\(selectedMovie.director.lastName)")
+                            .foregroundColor(.red)
                     }
-                    Spacer()
                 }
+                Spacer()
                 Divider()
                 HStack {
-                    VStack {
-                        Text("Overview navigationStack")
-                        Text("Movie " + selectedMovie.title)
-                        //button
-                    }
+                    //navigationstack moet hier
                 }
             }
         }

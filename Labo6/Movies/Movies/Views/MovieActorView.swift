@@ -13,7 +13,7 @@ struct MovieActorView: View {
     var body: some View {
         if let selectedActor = selectedActor {
             VStack {
-                Text("Actor: " selectedActor.firstName + " " + selectedActor.lastName)
+                Text("Actor: " + selectedActor.firstName + " " + selectedActor.lastName)
             }
             Divider()
         }
