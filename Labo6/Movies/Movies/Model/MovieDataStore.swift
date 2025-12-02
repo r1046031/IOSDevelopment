@@ -15,10 +15,6 @@ class MovieDataStore {
 //        
 //    }
     
-//    func getMovies() -> [Movie] {
-//        return movies
-//    }
-    
     func getMovies(actor: Actor) -> [Movie] {
         //filter -> eerst de group die nil is eruit halen
         let moviesFromActor = movies.movies.filter { movie in
