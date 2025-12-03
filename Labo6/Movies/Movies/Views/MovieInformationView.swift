@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MovieInformationView: View {
     @Binding var selectedMovie: Movie?
-    @State var selectedDirector: Director?
     @State var selectedActor: Actor?
     
     var body: some View {
@@ -23,12 +22,12 @@ struct MovieInformationView: View {
                 }
                 Divider()
                 Spacer()
-                    VStack {
-                        Text("Actors")
-                        List(selectedMovie.actors, id: \.self, selection: $selectedActor){
-                            actor in
-                            NavigationLink(destination: MovieActorView(selectedActor: $selectedActor)) {
-                                VStack {
+                    HStack {
+                        VStack {
+                            Text("Actors")
+                            List(selectedMovie.actors, id: \.self, selection: $selectedActor){
+                                actor in
+                                NavigationLink(destination: MovieActorView(selectedActor: $selectedActor)) {
                                     Text(actor.firstName + " " + actor.lastName)
                                         .foregroundColor(.red)
                                 }

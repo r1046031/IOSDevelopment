@@ -13,9 +13,27 @@ struct MovieActorView: View {
     var body: some View {
         if let selectedActor = selectedActor {
             VStack {
-                Text("Actor: " + selectedActor.firstName + " " + selectedActor.lastName)
+                HStack {
+                    Text("Actor: " + selectedActor.firstName + " " + selectedActor.lastName)
+                        .foregroundColor(.red)
+                }
+                Divider()
+                HStack {
+                    Text("Birthday" + "\(selectedActor.birthday)")
+                }
+                Spacer()
+                Divider()
+                HStack {
+                    Text("Movie(s)")
+                }
+                Spacer()
+                Divider()
+                HStack {
+                    Text("Overview navigationStack")
+                    
+                }
             }
-            Divider()
+            
         }
     }
 }
