@@ -10,7 +10,6 @@ import SwiftUI
 struct MovieListView: View {
     @Environment(MovieDataStore.self) var movieDataStore
     @State var loading = true
-//    @State var selectedMovie: Movie?
     @StateObject private var pathStore = PathStore()
     
     var body: some View {
@@ -19,17 +18,6 @@ struct MovieListView: View {
                 Text("loading")
             }
             else {
-//                List(movieDataStore.movies.movies, id: \.self, selection: $selectedMovie){
-//                    movie in
-//                    VStack {
-//                        Text(movie.title)
-//                            .fontWeight(.bold)
-//                        Text(movie.description)
-//                    }
-//                }
-//                .navigationDestination(item: $selectedMovie) { movie in
-//                    MovieInformationView(selectedMovie: $selectedMovie)
-//                }
                 List(movieDataStore.movies.movies, id: \.self){
                     movie in
                     NavigationLink(value: Route.movie(movie: movie)) {
