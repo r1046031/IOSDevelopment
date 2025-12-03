@@ -8,32 +8,37 @@
 import SwiftUI
 
 struct MovieActorView: View {
-    @Binding var selectedActor: Actor?
+//    @Binding var selectedActor: Actor?
+//    
+//    var body: some View {
+//        if let selectedActor = selectedActor {
+//            VStack {
+//                HStack {
+//                    Text("Actor: " + selectedActor.firstName + " " + selectedActor.lastName)
+//                        .foregroundColor(.red)
+//                }
+//                Divider()
+//                HStack {
+//                    Text("Birthday" + "\(selectedActor.birthday)")
+//                }
+//                Spacer()
+//                Divider()
+//                HStack {
+//                    Text("Movie(s)")
+//                }
+//                Spacer()
+//                Divider()
+//                HStack {
+//                    Text("Overview navigationStack")
+//                    
+//                }
+//            }
+//            
+//        }
+//    }
+    let actor: Actor
     
     var body: some View {
-        if let selectedActor = selectedActor {
-            VStack {
-                HStack {
-                    Text("Actor: " + selectedActor.firstName + " " + selectedActor.lastName)
-                        .foregroundColor(.red)
-                }
-                Divider()
-                HStack {
-                    Text("Birthday" + "\(selectedActor.birthday)")
-                }
-                Spacer()
-                Divider()
-                HStack {
-                    Text("Movie(s)")
-                }
-                Spacer()
-                Divider()
-                HStack {
-                    Text("Overview navigationStack")
-                    
-                }
-            }
-            
-        }
+        
     }
 }
