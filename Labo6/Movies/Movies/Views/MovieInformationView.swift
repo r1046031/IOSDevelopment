@@ -25,33 +25,35 @@ struct MovieInformationView: View {
                 HStack {
                     VStack {
                         Text("Actors")
-                            List(movie.actors, id: \.self){
-                                actor in
-                                NavigationLink(value: Route.actor(actor: actor)) {
-                                    VStack {
-                                        Text(actor.firstName + " " + actor.lastName)
-                                            .foregroundColor(.red)
-                                    }
+                        List(movie.actors, id: \.self){
+                            actor in
+                            NavigationLink(value: Route.actor(actor: actor)) {
+                                VStack {
+                                    Text(actor.firstName + " " + actor.lastName)
+                                        .foregroundColor(.red)
                                 }
                             }
                         }
                     }
-                    Divider()
-                    HStack {
-                        VStack {
-                            Text("Director")
-                            NavigationLink(value: Route.director(director: movie.director)) {
-                                Text("\(movie.director.firstName)" + " " + "\(movie.director.lastName)")
-                                    .foregroundColor(.red)
-                            }
+                }
+                Divider()
+                HStack {
+                    VStack {
+                        Text("Director")
+                        NavigationLink(value: Route.director(director: movie.director)) {
+                            Text("\(movie.director.firstName)" + " " + "\(movie.director.lastName)")
+                                .foregroundColor(.red)
                         }
                     }
-                    Spacer()
-                    Divider()
-                    HStack {
-                        //navigationstack moet hier
+                }
+                Spacer()
+                Divider()
+                HStack {
+                    VStack {
+                        
                     }
                 }
+            }
             .navigationDestination(for: Route.self) { route in
                 switch route {
                 case let .actor(actor):

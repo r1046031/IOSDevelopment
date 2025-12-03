@@ -53,7 +53,7 @@ struct MovieDirectorView: View {
                 Divider()
                 HStack {
                     VStack {
-                        
+
                     }
                 }
             }
