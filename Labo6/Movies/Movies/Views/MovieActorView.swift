@@ -10,10 +10,9 @@ import SwiftUI
 struct MovieActorView: View {
     let actor: Actor
     @Environment(MovieDataStore.self) var movieDataStore
-    @StateObject private var pathStore = PathStore()
+    @EnvironmentObject var pathStore: PathStore
     
     var body: some View {
-        NavigationStack(path: $pathStore.path) {
             VStack {
                 HStack {
                     Text("Actor: " + actor.firstName + " " + actor.lastName)
@@ -36,26 +35,18 @@ struct MovieActorView: View {
                                     Text(movie.title)
                                         .foregroundColor(.red)
                                 }
+                                .frame(maxWidth: .infinity, alignment: .center)
                             }
                         }
+                        .listStyle(.plain)
+                        .listRowSeparator(.hidden)
                     }
                 }
                 Spacer()
                 Divider()
                 HStack {
-                    
+                    StackView()
                 }
             }
         }
-        .navigationDestination(for: Route.self) { route in
-            switch route {
-                case let .actor(actor: actor):
-                    MovieActorView(actor: actor)
-                case let .director(director: director):
-                    MovieDirectorView(director: director)
-                case let .movie(movie: movie):
-                    MovieInformationView(movie: movie)
-            }
-        }
-    }
 }

@@ -10,7 +10,7 @@ import SwiftUI
 struct MovieListView: View {
     @Environment(MovieDataStore.self) var movieDataStore
     @State var loading = true
-    @StateObject private var pathStore = PathStore()
+    @EnvironmentObject var pathStore: PathStore
     
     var body: some View {
         NavigationStack(path: $pathStore.path) {
@@ -26,8 +26,11 @@ struct MovieListView: View {
                                 .fontWeight(.bold)
                             Text(movie.description)
                         }
+                        .frame(maxWidth: .infinity, alignment: .center)
                     }
                 }
+                .listStyle(.plain)
+                .listRowSeparator(.hidden)
                 .navigationDestination(for: Route.self) { route in
                     switch route {
                         case let .actor(actor: actor):

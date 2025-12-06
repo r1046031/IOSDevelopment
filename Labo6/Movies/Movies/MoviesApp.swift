@@ -10,9 +10,13 @@ import SwiftUI
 @main
 struct MoviesApp: App {
     @State var movieDataStore = MovieDataStore()
+    @StateObject private var pathStore = PathStore()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView().environment(movieDataStore)
+            ContentView()
+                .environment(movieDataStore)
+                .environmentObject(pathStore)
         }
     }
 }
