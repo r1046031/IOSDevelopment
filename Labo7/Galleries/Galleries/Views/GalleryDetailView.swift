@@ -13,41 +13,44 @@ struct GalleryDetailView: View {
     @State var selectedArtist: Artist?
     
     var body: some View {
-        VStack {
-            if let selectedGallery = selectedGallery {
-                HStack {
-                    Text(selectedGallery.name)
-                        .foregroundColor(.brown)
-                        .font(.system(size: 24))
-                        .fontWeight(.bold)
-                }
-                Divider()
-                HStack {
-                    VStack {
-                        Text(selectedGallery.location)
+        NavigationStack {
+            VStack {
+                if let selectedGallery = selectedGallery {
+                    HStack {
+                        Text(selectedGallery.name)
+                            .foregroundColor(.brown)
+                            .font(.system(size: 24))
                             .fontWeight(.bold)
-                        Text(selectedGallery.description)
                     }
-                }
-                Divider()
-                HStack {
-                    VStack {
-                        Text("List of artists")
-                            .foregroundColor(.brown)
+                    Divider()
+                    HStack {
+                        VStack {
+                            Text(selectedGallery.location)
+                                .fontWeight(.bold)
+                            Text(selectedGallery.description)
+                        }
                     }
-                }
-                List(galleryDataStore.getArtists(gallery: selectedGallery), id: \.self, selection: $selectedArtist) {
-                    artist in
-                    VStack {
-                        Text(artist.name)
-                            .foregroundColor(.brown)
-                        Text(artist.nationality)
-                            .foregroundColor(.gray)
+                    Divider()
+                    HStack {
+                        VStack {
+                            Text("List of artists")
+                                .foregroundColor(.brown)
+                        }
                     }
+                    List(galleryDataStore.getArtists(gallery: selectedGallery), id: \.self, selection: $selectedArtist) {
+                        artist in
+                        NavigationLink(destination: ArtistDetailView(selectedArtist: $selectedArtist)) {
+                            VStack {
+                                Text(artist.name)
+                                    .foregroundColor(.brown)
+                                Text(artist.nationality)
+                                    .foregroundColor(.gray)
+                            }
+                        }
+                    }
+                } else {
+                    Text("No gallery selected")
                 }
-                
-            } else {
-                Text("No gallery selected")
             }
         }
     }
