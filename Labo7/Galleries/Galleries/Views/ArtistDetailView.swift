@@ -40,13 +40,15 @@ struct ArtistDetailView: View {
                             
                             List(galleryDataStore.getArtworks(artist: selectedArtist), id: \.self, selection: $selectedArtwork) {
                                 artwork in
-                                NavigationLink(destination: ArtworkDetailView(selectedArtwork: $selectedArtwork)) {
+                                NavigationLink(destination: ArtworkDetailView(selectedArtwork: $selectedArtwork, selectedArtist: $selectedArtist)) {
                                     VStack {
                                         Text(artwork.title)
                                             .foregroundColor(.brown)
+                                            .fontWeight(.bold)
                                         Text(artwork.description)
                                             .foregroundColor(.gray)
                                     }
+                                    Divider()
                                 }
                             }
                         }
