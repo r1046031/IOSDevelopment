@@ -8,18 +8,21 @@
 import SwiftUI
 
 struct GalleryTabView: View {
+    @Binding var selectedGallery: Gallery?
+    
     var body: some View {
-        HStack {
-            VStack {
-                TabView {
-                    Tab("Galleries", systemImage: "") {
-                        GalleryListView()
-                    }
-                    Tab("No gallery", systemImage: "") {
-                        GalleryDetailView()
-                    }
+        TabView() {
+            GalleryListView(selectedGallery: $selectedGallery)
+                .tabItem {
+                    Label("Galleries", systemImage: "photo.on.rectangle")
                 }
-            }
+            
+            GalleryDetailView(selectedGallery: $selectedGallery)
+                .tabItem {
+                    Label(selectedGallery?.name ?? "No gallery",
+                          systemImage: "photo.on.rectangle")
+                }
+
         }
     }
 }

@@ -12,11 +12,11 @@ class GalleryDataStore {
     var galleries : [Gallery] = []
 
     func loadData() async {
-        // TODO: Implement async loading
         do {
             print("⏳ Simulating 2-second load delay...")
             try await Task.sleep(for: .seconds(2)) // Simulate long load
-            galleries = try load("galleries.json")
+            let response: Galleries = try load("galleries.json")
+            galleries = response.galleries
             sort()
             print("✅ Data loaded successfully.")
         } catch {

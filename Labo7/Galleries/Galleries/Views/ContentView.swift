@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var selectedGallery: Gallery? = nil
+    
     var body: some View {
-         GalleryListView()
+        GalleryTabView(selectedGallery: $selectedGallery)
     }
 }

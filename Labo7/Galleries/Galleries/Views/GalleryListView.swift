@@ -9,18 +9,25 @@ import SwiftUI
 
 struct GalleryListView: View {
     @Environment(GalleryDataStore.self) var galleryDataStore
-    @State var selectedGallery: Gallery?
+    @Binding var selectedGallery: Gallery?
     @State var loading = true
     
     var body: some View {
         VStack {
-            //GalleryTabView()
-            if(!loading) {
+            if(loading) {
+                Text("loading")
+            } else {
                 List(galleryDataStore.galleries, id: \.self, selection: $selectedGallery) { gallery in
                     VStack {
                         Text(gallery.name)
+                            .foregroundColor(.brown)
+                            .font(.system(size: 24))
+                            .fontWeight(.bold)
                         Text(gallery.location)
+                            .fontWeight(.bold)
                         Text(gallery.description)
+                            .foregroundColor(.gray)
+                        Divider()
                     }
                 }
             }
