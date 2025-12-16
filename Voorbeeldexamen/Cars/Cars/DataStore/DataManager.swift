@@ -1,27 +1,43 @@
 import Foundation
+import SwiftUI
+
+@Observable
 class DataManager {
     var cars: [Car] = []
-     
+    @State var filterTypes = ["Alle", "Benzine", "Elektrisch"]
+    @State var selectedFilter : String = "Alle"
+    @State var favorites : [Car]?
+    
+    func sort() {
+        cars.sort { car1, car2 in
+            car1.id > car2.id
+        }
+    }
+    
+    func getCarsWithFuel(filter: String) -> [Car] {
+        //filter
+        var carsWithFuel: [Car] = cars.filter {
+            $0.fuelType == filter
+        }
+        
+        return carsWithFuel
+    }
+    
     func loadCars() async {
         do {
             print("⏳ Loading car data...")
             try await Task.sleep(for: .seconds(1))
             
-            //load cars
+            let response: CarsResponse = load("cars.json")
+            self.cars = response.cars
+            
             print("✅ Data loaded successfully.")
         } catch {
             print("❌ Failed to load cars:", error)
         }
+        
     }
     
-    func getCarsByFuelType(selectedFuelType: String) -> [Car] {
-        //filter
-        var carsByFuelType = cars.filter {
-            $0.fuelType == selectedFuelType
-        }
-        
-        return carsByFuelType
-    }
 }
 
 func load<T: Decodable>(_ filename: String) -> T {
