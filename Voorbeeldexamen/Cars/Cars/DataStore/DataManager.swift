@@ -7,6 +7,7 @@ class DataManager {
     @State var filterTypes = ["Alle", "Benzine", "Elektrisch"]
     @State var selectedFilter : String = "Alle"
     @State var favorites : [Car]?
+    @State var loading = true
     
     func sort() {
         cars.sort { car1, car2 in
