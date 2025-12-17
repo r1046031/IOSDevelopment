@@ -11,6 +11,8 @@ import SwiftUI
 @Observable
 class DataManager {
     var cars: [Car] = []
+
+    var path: Path?
     var filterTypes = ["Alle", "Benzine", "Elektrisch"]
     var selectedFilter : String = "Alle"
     var favorites : [Car]?
@@ -24,7 +26,7 @@ class DataManager {
     
     func getCarsWithFuel(filter: String) -> [Car] {
         //filter
-        var carsWithFuel: [Car] = cars.filter {
+        let carsWithFuel: [Car] = cars.filter {
             $0.fuelType == filter
         }
         

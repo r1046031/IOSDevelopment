@@ -22,13 +22,29 @@ struct HomeView: View {
                 VStack {
                     Grid {
                         ForEach(dataManager.cars, id: \.self) { car in
-                            NavigationLink(destination: CarView()) {
+                            NavigationLink(value: Destination.CarDetail(car)) {
                                 GridRow {
-                                    Text(car.brand)
-                                    Text(car.model)
-                                    Text("\(car.price)")
-                                    
+                                    HStack {
+                                        VStack {
+                                            Text(car.brand)
+                                                .fontWeight(.bold)
+                                            Text(car.model)
+                                                .foregroundColor(.blue)
+                                            Text("\(String(car.price))")
+                                        }
+                                        .font(.system(size: 16))
+                                        Image(systemName: "car.fill")
+                                    }
                                 }
+                            }
+                        }
+                        .navigationDestination(for: Destination.self) { destination in
+                            switch destination {
+                            case .CarsList(let cars):
+                                HomeView()
+
+                            case .CarDetail(let car):
+                                CarView()
                             }
                         }
                     }
