@@ -12,7 +12,7 @@ import SwiftUI
 class DataManager {
     var cars: [Car] = []
 
-    var path: Path?
+    var path = Path.self
     var filterTypes = ["Alle", "Benzine", "Elektrisch"]
     var selectedFilter : String = "Alle"
     var favorites : [Car]?
