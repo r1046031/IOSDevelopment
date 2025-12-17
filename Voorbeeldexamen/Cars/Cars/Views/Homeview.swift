@@ -11,7 +11,7 @@ struct HomeView: View {
     @Environment(DataManager.self) private var dataManager
     
     var body: some View {
-        //@Bindable var dataManager.selectedFilter = dataManager.selectedFilter
+        @Bindable var dataManager = dataManager
         
         NavigationStack {
             if(dataManager.loading) {
@@ -24,7 +24,9 @@ struct HomeView: View {
                         ForEach(dataManager.cars, id: \.self) { car in
                             NavigationLink(destination: CarView()) {
                                 GridRow {
-                                    //tot hier aan gekomen
+                                    Text(car.brand)
+                                    Text(car.model)
+                                    Text("\(car.price)")
                                 }
                             }
                         }
