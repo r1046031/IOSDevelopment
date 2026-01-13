@@ -19,28 +19,20 @@ class UurroosterDataStore {
         uurrooster = uurrooster.sorted { $0.id > $1.id }
     }
     
-    func addEvent(event: EventModel ){
-        uurrooster.append(event)
+    private func getIndexItem() {
+            
     }
     
-    func updateEvent(event: EventModel ){
-        uurrooster[getEventIndex(id: event.id)] = event
-    }
-    
-    func deleteEvent(id: String) {
+    func updateEvent(event: EventModel) {
         
     }
     
-    func getEvent(id: String) -> EventModel {
-        for act in uurrooster {
-            if(act.id == id) {
-                
-            }
-        }
+    func removeEvent(event: EventModel) {
+        uurrooster.removeAll { name in name = event }
     }
     
-    private func getEventIndex(id: String) -> Int {
-
+    func addEvent(event: EventModel) {
+        uurrooster.append(event)
     }
     
     func loadData() async {
