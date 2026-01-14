@@ -10,8 +10,13 @@ import SwiftUI
 struct CarDetailView: View {
     @Environment(DataManager.self) private var dataManager
     var selectedCar: Car
-    @State var favorite = dataManager.isInFavorites(car: $selectedCar)
+    @State var favorite = false
 
+    init(selectedCar: Car, dataManager: DataManager) {
+        self.selectedCar = selectedCar
+        _favorite = State(initialValue: dataManager.isInFavorites(car: selectedCar))
+    }
+    
     var body: some View {
         HStack {
             VStack {
@@ -25,9 +30,16 @@ struct CarDetailView: View {
                 Button("Favoriet") {
                     favorite = !favorite
                     dataManager.addToFavorites(car: selectedCar)
+                    
+                    if(favorite == false) {
+                        dataManager.removeFromFavorites(car: selectedCar)
+                    }
                 }
             }
             Image(systemName:"car")
+            if(favorite) {
+                Image(systemName: "heart")
+            }
         }
     }
 }
