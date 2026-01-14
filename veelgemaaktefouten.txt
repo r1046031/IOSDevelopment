@@ -1,0 +1,11 @@
+1: couldn't parse galleries.json as array<Gallery>
+
+OPL: struct GalleriesResponse: Decodable {
+    let galleries: [Gallery]
+}
+
+dan in load:
+
+            var response: GalleriesResponse = try load("galleries.json")
+            galleries = response.galleries
+            sort()
