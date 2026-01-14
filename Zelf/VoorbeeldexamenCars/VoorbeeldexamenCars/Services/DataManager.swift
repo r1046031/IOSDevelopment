@@ -1,23 +1,31 @@
 import Foundation
+
+@Observable
 class DataManager {
     var cars: [Car] = []
+    var selectedCar: Car?
+    var favorites: [Car] = []
+    var path = [Destination]()
      
+    func addToFavorites(car: Car) {
+        favorites.append(car)
+    }
+    
+    func isInFavorites(car: Car) -> Bool {
+        return favorites.contains(car)
+    }
+    
     func loadCars() async {
-       
-        
         do {
             print("⏳ Loading car data...")
             try await Task.sleep(for: .seconds(1))
-            
-            //load cars
+            let response: CarsResponse = try load("cars.json")
+            cars = response.cars
             print("✅ Data loaded successfully.")
         } catch {
             print("❌ Failed to load cars:", error)
         }
-        
-        
     }
-    
 }
 
 func load<T: Decodable>(_ filename: String) -> T {
@@ -40,4 +48,10 @@ func load<T: Decodable>(_ filename: String) -> T {
     } catch {
         fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
     }
+}
+
+enum Destination: Hashable {
+    case favorites
+    case home
+    case settings
 }
