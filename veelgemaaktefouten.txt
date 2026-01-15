@@ -35,3 +35,19 @@ null waarden in mapping naar model klasse in datastore json lezen
             galleries = response.galleries
                 .compactMap { $0.toGallery() }
             sort()
+
+
+navigationstack
+met een destination -> best niet gebruiken
+met een value
+    bindable datamanager
+    Navigationstack ...
+    NavigationLink(value: car) ...
+    .navigationDestination
+
+met een path
+    bindable datamanager
+    Navigationstack
+    .ontapgesture
+        append to path
+    .navigationdestination
