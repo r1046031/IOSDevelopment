@@ -16,6 +16,13 @@ class DataStore {
             print("⏳ Simulating 2-second load delay...")
             try await Task.sleep(for: .seconds(2))
             var response: MuseumResponse = try load("museums")
+            museums = response.museums.map { museum in
+                var fixed = museum
+                fixed.museumID = museum.museumID ?? ""
+                fixed.city = museum.city ?? ""
+                fixed.description = museum.description ?? ""
+                fixed.exhibitions = museum.exhibitions ?? []
+            }
             museums = response.museums
             print("✅ Data loaded successfully.")
         } catch {
