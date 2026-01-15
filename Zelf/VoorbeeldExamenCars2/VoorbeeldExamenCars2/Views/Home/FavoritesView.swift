@@ -13,13 +13,20 @@ struct FavoritesView: View {
     var body: some View {
         @Bindable var dataManager = dataManager
         
-        VStack {
-            if dataManager.favorites != [] {
-                List(dataManager.favorites, id: \.self) { car in
-                    CarRowView(car: car)
+        NavigationStack {
+            VStack {
+                if dataManager.favorites != [] {
+                    List(dataManager.favorites, id: \.self, selection: $dataManager.selectedCar) { car in
+                        NavigationLink(value: car) {
+                            CarRowView(car: car)
+                        }
+                    }
+                } else {
+                    Text("Er zijn nog geen favorieten geselecteerd")
                 }
-            } else {
-                Text("Er zijn nog geen favorieten geselecteerd")
+            }
+            .navigationDestination(for: Car.self) { car in
+                CarDetailView()
             }
         }
     }

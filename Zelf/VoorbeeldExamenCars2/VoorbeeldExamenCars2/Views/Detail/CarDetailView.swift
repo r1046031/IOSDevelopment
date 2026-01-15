@@ -23,10 +23,6 @@ struct CarDetailView: View {
                     Text("\(dataManager.selectedCar!.model) is \(favorite ? "in de favorieten" : "niet in de favorieten")")
                 }
                 Image(systemName:"car")
-                
-//                if(favorite) {
-//                    dataManager.addToFavorites()
-//                }
             }
         }
         .onAppear() {
