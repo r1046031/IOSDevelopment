@@ -17,9 +17,9 @@ struct MuseumHomeView: View {
         VStack {
             List(dataManager.dataStore.museums, id: \.self, selection: $dataManager.selectedMuseum) { museum in
                 VStack {
-                    Text(museum.name!)
-                    Text(museum.city!)
-                    Text(museum.description!)
+                    Text(museum.name ?? "Museum")
+                    Text(museum.city ?? "")
+                    Text(museum.description ?? "")
                 }
             }
         }
