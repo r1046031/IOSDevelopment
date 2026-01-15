@@ -10,11 +10,15 @@ import SwiftUI
 @Observable
 class DataManager {
     var dataStore = GalleryDataStore()
+    var selectedGallery: Gallery? = nil
     var route: [Destination] = []
+    
+    func clearRoute() {
+        route = []
+    }
 }
 
 enum Destination: Hashable {
-    case gallery(Gallery)
     case artist(Artist)
-    case artwork(Artwork)
+    case artwork(Artwork, Artist)
 }

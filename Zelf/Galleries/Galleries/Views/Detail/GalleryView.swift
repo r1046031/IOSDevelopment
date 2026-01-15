@@ -9,16 +9,41 @@ import SwiftUI
 
 struct GalleryView: View {
     @Environment(DataManager.self) private var dataManager
-    @Binding var selectedGallery: Gallery?
     
     var body: some View {
-        VStack {
-            if let selectedGallery = selectedGallery {
-                Text(selectedGallery.name)
-                Text(selectedGallery.location)
-                Text(selectedGallery.description)
-                Text("List of artists")
+        @Bindable var dataManager = dataManager
+        
+        NavigationStack(path: $dataManager.route) {
+            VStack {
+                if let selectedGallery = dataManager.selectedGallery {
+                    Text(dataManager.selectedGallery!.name)
+                    Text(dataManager.selectedGallery!.location)
+                    Text(dataManager.selectedGallery!.description)
+                    Text("List of artists")
+                    List(dataManager.selectedGallery!.artists) { artist in
+                        VStack {
+                            Text(artist.name)
+                            Text(artist.nationality)
+                        }
+                        .onTapGesture {
+                            dataManager.route.append(.artist(artist))
+                        }
+                    }
+                } else {
+                    Text("no gallery selected")
+                }
             }
+            .navigationDestination(for: Destination.self) { destination in
+                switch destination {
+                    case .artist(let artist):
+                        ArtistView(artist: artist)
+                    case .artwork(let artwork, let artist):
+                        ArtworkView(artwork: artwork, artist: artist)
+                }
+            }
+        }
+        .onAppear {
+            dataManager.clearRoute()
         }
     }
 }

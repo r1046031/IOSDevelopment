@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(DataManager.self) private var dataManager
+    
     var body: some View {
             TabView {
                 Tab("Galleries", systemImage: "") {
                     GalleryHomeView()
                 }
-                Tab("No gallery selected", systemImage: "") {
-                    GalleryView(selectedGallery: nil)
+                Tab("Gallery", systemImage: "") {
+                    GalleryView()
                 }
             }
         }
