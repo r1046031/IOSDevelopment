@@ -1,0 +1,139 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 maak een gelijkaardige oefening zoals deze swiftui oefening aub; we krijgen de json en sommige bestanden op voorhand. # Assignment: Asynchronous Data Loading in Galleries App\
+\
+**Course:** iOS Development  \
+**Program:** Bachelor Applied Computer Science  \
+**Topic:** Async/Await and Data Loading with SwiftUI  \
+**Instructors:** \
+\
+---\
+\
+Starter Files in [the Assignment_LoadAsync_Galleries_files directory](./Assignment_LoadAsync_Galleries_files/)\
+\
+## \uc0\u55357 \u56523  Introduction\
+\
+In this assignment you will combine Tab navigation and navigation using a NavigationStack with Path. The data will be loaded using a **asynchronous data loading** in SwiftUI.\
+The app start with 2 tabs: a list of galleries and a detail of the selected gallery. If no gallery is selected in the list of galleries, the text "Selzct a gallery" is shown. In the Gallery detail view, you can navigate to one of the artists of the gallery. In the artist detail view you can navigate to the list of art of the artist. In the art detail view you can navigate to the artists or to other arts.\
+\
+### Functionality of the Galleries App\
+\
+The Galleries app offers the following functionalities:\
+\
+- **List of galleries**: Galleries are loaded asynchronously and displayed in a list with name, location and description\
+- **Gallery details**: Select a gallery to view its artists and details\
+- **Artist view**: Navigate to an artist to see their biography and artworks\
+- **Artwork view**: Navigate to an artwork to see detailed information including year, medium and dimensions. You get also a list of other artworks.\
+- **Navigation**: Deep navigation through galleries \uc0\u8594  artists \u8594  artworks\
+\
+## \uc0\u55357 \u56561  Screenshots\
+\
+![Galleries Screenshot 0](images/Galleries%20-%20screenshot%200.png)\
+![Galleries Screenshot 1](images/Galleries%20-%20screenshot%201.png)\
+![Galleries Screenshot 2](images/Galleries%20-%20screenshot%202.png)\
+![Galleries Screenshot 3](images/Galleries%20-%20screenshot%203.png)\
+![Galleries Screenshot 4](images/Galleries%20-%20screenshot%204.png)\
+\
+---\
+\
+## \uc0\u55356 \u57263  Learning Objectives\
+\
+After this assignment you will be able to:\
+\
+- \uc0\u9989  Explain how async/await works in Swift\
+- \uc0\u9989  Implement asynchronous functions in a DataStore class\
+- \uc0\u9989  Add a loading state to your SwiftUI views\
+- \uc0\u9989  Use the `.task` modifier for async operations\
+- \uc0\u9989  Load JSON data and map it to model objects\
+\
+---\
+\
+## \uc0\u55357 \u56538  Background: The GalleryData Class\
+\
+### Overview of the GalleryData\
+\
+The `GalleryData` class is an **Observable** data model that acts as the data source for gallery information. We add a load function to implemnt asynchronous loading.\
+\
+### Your Task: Implementing loadData()\
+\
+You need to add the `GalleryData` class to load data asynchronously. Here's what you should implement:\
+\
+```swift\
+@Observable\
+class GalleryData \{\
+\
+    //...\
+\
+    func loadData() async \{\
+        // TODO: Implement async loading\
+        do \{\
+            print("\uc0\u9203  Simulating 2-second load delay...")\
+            try await Task.sleep(for: .seconds(2)) // Simulate long load\
+            //load galleries here\
+            print("\uc0\u9989  Data loaded successfully.")\
+        \} catch \{\
+            print("\uc0\u10060  Failed to load galleries:", error)\
+            galleries = []\
+        \}\
+    \}\
+\}\
+```\
+\
+---\
+\
+#### 4\uc0\u65039 \u8419  AppData Class\
+\
+Since most of the information (path, galleries, ...) is needed on the different screens, we will create an AppDate class and add is an Environment object.\
+\
+The `AppData` class :\
+\
+- Access galleries, artists and artworks through the `GalleryData` instance\
+- Has a reference to the path variable used for the navigation\
+\
+---\
+\
+## \uc0\u55356 \u57303 \u65039  Architecture\
+\
+The Galleries app follows the MVVM pattern:\
+\
+- **Models**: `Gallery`, `Artist`, `Artwork`, `Galleries` (JSON wrapper)\
+- **DataStore**: `GalleryData` (loads and stores gallery data)\
+- **ViewModels**: `AppData` (manages app state, selected gallery, navigation)\
+- **Views**: `GalleriesView`, `GalleryDetailView`, `ArtistView`, `ArtworkView`\
+\
+### Data Flow\
+\
+1. `GalleriesView` triggers `loadData()` via `.task` modifier\
+2. `GalleryData.loadData()` asynchronously loads JSON\
+3. `galleries` array is populated\
+4. SwiftUI automatically updates the UI through `@Observable`\
+5. User can select gallery \uc0\u8594  view artists \u8594  view artworks\
+\
+## \uc0\u55357 \u56534  Useful Resources\
+\
+- [Swift Concurrency Documentation](https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html)\
+- [SwiftUI Task Modifier](<https://developer.apple.com/documentation/swiftui/view/task(priority:_:)>)\
+- [Observable Macro](<https://developer.apple.com/documentation/observation/observable()>)\
+- [ProgressView Documentation](https://developer.apple.com/documentation/swiftui/progressview)\
+\
+---\
+\
+## \uc0\u9989  Expected Results\
+\
+After completing this assignment:\
+\
+1. \uc0\u9989  App shows loading indicator when launched\
+2. \uc0\u9989  Galleries load after simulated network delay\
+3. \uc0\u9989  Console shows loading messages\
+4. \uc0\u9989  All navigation functionality remains working\
+5. \uc0\u9989  Error handling catches and logs failures\
+6. \uc0\u9989  UI remains responsive during loading\
+\
+---\
+\
+**Good luck! \uc0\u55356 \u57225 **}

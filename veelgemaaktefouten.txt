@@ -9,3 +9,22 @@ dan in load:
             var response: GalleriesResponse = try load("galleries.json")
             galleries = response.galleries
             sort()
+
+laden
+door in de homeview met boolean bij te houden of het aan het laden is.
+op het einde .task
+
+        .task {
+            await dataManager.dataStore.loadData()
+            loading = false;
+        }
+
+in het begin
+
+            if loading {
+                ProgressView("Loading")
+                    .progressViewStyle(CircularProgressViewStyle())
+                    .padding()
+            } 
+
+zo krijg je zo'n spinner

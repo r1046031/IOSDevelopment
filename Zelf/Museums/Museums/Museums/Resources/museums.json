@@ -1,0 +1,85 @@
+{
+  "museums": [
+    {
+      "id": "1",
+      "name": "Museum voor Schone Kunsten",
+      "city": "Antwerpen",
+      "description": "Een toonaangevend museum met een uitgebreide collectie beeldende kunst.",
+      "exhibitions": [
+        {
+          "id": "101",
+          "title": "Vlaamse Meesters",
+          "period": "1500 - 1700",
+          "description": "Een overzicht van de grootste Vlaamse schilders.",
+          "artworks": [
+            {
+              "id": "1001",
+              "title": "De Kruisafneming",
+              "artist": "Peter Paul Rubens",
+              "year": 1612,
+              "medium": "Olieverf op doek",
+              "dimensions": "421 × 311 cm"
+            },
+            {
+              "id": "1002",
+              "title": "De Aanbidding der Wijzen",
+              "artist": "Peter Paul Rubens",
+              "year": 1624,
+              "medium": "Olieverf op paneel",
+              "dimensions": "355 × 493 cm"
+            }
+          ]
+        },
+        {
+          "id": "102",
+          "title": "Barok in Beweging",
+          "period": "1600 - 1750",
+          "description": "Dynamiek en emotie in de barokkunst.",
+          "artworks": [
+            {
+              "id": "1003",
+              "title": "Christus aan het Kruis",
+              "artist": "Antoon van Dyck",
+              "year": 1627,
+              "medium": "Olieverf op doek",
+              "dimensions": "223 × 166 cm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Museum of Modern Art",
+      "city": "Gent",
+      "description": "Museum gewijd aan moderne en hedendaagse kunst.",
+      "exhibitions": [
+        {
+          "id": "201",
+          "title": "Abstracte Expressie",
+          "period": "1945 - 1965",
+          "description": "Kunst die emotie en spontaniteit centraal stelt.",
+          "artworks": [
+            {
+              "id": "2001",
+              "title": "Blue Poles",
+              "artist": "Jackson Pollock",
+              "year": 1952,
+              "medium": "Olieverf en email op doek",
+              "dimensions": "212 × 488 cm"
+            },
+            {
+              "id": "2002",
+              "title": "Woman I",
+              "artist": "Willem de Kooning",
+              "year": 1950,
+              "medium": "Olieverf op doek",
+              "dimensions": "192 × 147 cm"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
