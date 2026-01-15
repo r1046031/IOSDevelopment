@@ -14,9 +14,9 @@ struct ContentView: View {
                     GalleryHomeView()
                 }
                 Tab("No gallery selected", systemImage: "") {
-                    GalleryView()
+                    GalleryView(selectedGallery: nil)
                 }
             }
         }
     }
-}
+

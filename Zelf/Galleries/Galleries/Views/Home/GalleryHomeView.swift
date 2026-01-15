@@ -10,6 +10,7 @@ import SwiftUI
 struct GalleryHomeView: View {
     @Environment(DataManager.self) private var dataManager
     @State var loading = true
+    @State var selectedGallery: Gallery?
     
     var body: some View {
         NavigationStack {
@@ -18,27 +19,17 @@ struct GalleryHomeView: View {
                     .progressViewStyle(CircularProgressViewStyle())
                     .padding()
             } else {
-                List(dataManager.dataStore.galleries, id:\.self) { gallery in
-                    VStack(destination: gallery) {
-                        NavigationLink(destination: gallery) {
-                            VStack {
-                                Text(gallery.name)
-                                Text(gallery.location)
-                                Text(gallery.description)
-                            }
-                        }
+                List(dataManager.dataStore.galleries, id:\.self, selection: $selectedGallery) { gallery in
+                    VStack {
+                        Text(gallery.name)
+                        Text(gallery.location)
+                        Text(gallery.description)
                     }
                 }
-            }
-        }
-        .navigationDestination(for: Destination.self) { destination in
-            switch destination {
-                case .artist(let artist):
-                    ArtistView()
-                case .artwork(let artwork):
-                    ArtworkView()
-                case .gallery(let gallery):
-                    GalleryView()
+                
+                if let selectedGallery = selectedGallery {
+                    GalleryView(selectedGallery: $selectedGallery)
+                }
             }
         }
         .task {

@@ -9,8 +9,16 @@ import SwiftUI
 
 struct GalleryView: View {
     @Environment(DataManager.self) private var dataManager
+    @Binding var selectedGallery: Gallery?
     
     var body: some View {
-        Text("gallery")
+        VStack {
+            if let selectedGallery = selectedGallery {
+                Text(selectedGallery.name)
+                Text(selectedGallery.location)
+                Text(selectedGallery.description)
+                Text("List of artists")
+            }
+        }
     }
 }
