@@ -16,11 +16,11 @@ struct MuseumView: View {
         NavigationStack(path: $dataManager.route) {
             VStack {
                 if let selectedMuseum = dataManager.selectedMuseum {
-                    Text(selectedMuseum.name)
-                    Text(selectedMuseum.description)
-                    Text(selectedMuseum.city)
+                    Text(selectedMuseum.name!)
+                    Text(selectedMuseum.description!)
+                    Text(selectedMuseum.city!)
                     Text("Exhibitions")
-                    List(selectedMuseum.exhibitions, id: \.self) { exhibition in
+                    List(selectedMuseum.exhibitions!, id: \.self) { exhibition in
                         VStack {
                             Text(exhibition.title)
                             Text(exhibition.description)

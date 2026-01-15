@@ -18,12 +18,12 @@ class DataStore {
             var response: MuseumResponse = try load("museums")
             museums = response.museums.map { museum in
                 var fixed = museum
-                fixed.museumID = museum.museumID ?? ""
+                fixed.museumID = museum.museumID
                 fixed.city = museum.city ?? ""
                 fixed.description = museum.description ?? ""
                 fixed.exhibitions = museum.exhibitions ?? []
+                return fixed
             }
-            museums = response.museums
             print("✅ Data loaded successfully.")
         } catch {
             print("❌ Failed to load galleries:", error)
