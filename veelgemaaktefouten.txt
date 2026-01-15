@@ -28,3 +28,10 @@ in het begin
             } 
 
 zo krijg je zo'n spinner
+
+null waarden in mapping naar model klasse in datastore json lezen
+
+            var response: GalleriesResponse = try load("galleries.json")
+            galleries = response.galleries
+                .compactMap { $0.toGallery() }
+            sort()
