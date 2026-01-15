@@ -33,7 +33,13 @@ null waarden in mapping naar model klasse in datastore json lezen
 
             var response: GalleriesResponse = try load("galleries.json")
             galleries = response.galleries
-                .compactMap { $0.toGallery() }
+                        galleries = response.galleries.map { gallery in
+                            var fixed = gallery
+                            fixed.name = gallery.name ?? ""
+                            fixed.description = gallery.description ?? ""
+                            fixed.imageUrl = gallery.imageUrl ?? ""
+                            return fixed
+                        }
             sort()
 
 
