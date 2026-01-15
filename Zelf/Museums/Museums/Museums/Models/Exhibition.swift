@@ -12,9 +12,9 @@ struct Exhibition: Identifiable, Codable, Hashable, Equatable {
     var id: String { exhibitionID }
 
     let exhibitionID: String
-    let title: String
-    let period: String
-    let description: String
+    let title: String?
+    let period: String?
+    let description: String?
     let artworks: [Artwork]
 
     enum CodingKeys: String, CodingKey {

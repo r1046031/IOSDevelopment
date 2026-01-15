@@ -20,13 +20,15 @@ struct MuseumView: View {
                     Text(selectedMuseum.description!)
                     Text(selectedMuseum.city!)
                     Text("Exhibitions")
-                    List(selectedMuseum.exhibitions!, id: \.self) { exhibition in
-                        VStack {
-                            Text(exhibition.title)
-                            Text(exhibition.description)
-                        }
-                        .onTapGesture {
-                            dataManager.route.append(.exhibition(exhibition))
+                    if let exhibitions = selectedMuseum.exhibitions {
+                        List(selectedMuseum.exhibitions!, id: \.self) { exhibition in
+                            VStack {
+                                Text(exhibition.title!)
+                                Text(exhibition.description!)
+                            }
+                            .onTapGesture {
+                                dataManager.route.append(.exhibition(exhibition))
+                            }
                         }
                     }
                 } else {

@@ -12,11 +12,11 @@ struct Artwork: Identifiable, Codable, Hashable, Equatable {
     var id: String { artworkID }
 
     let artworkID: String
-    let title: String
-    let artist: String
-    let year: Int
-    let medium: String
-    let dimensions: String
+    let title: String?
+    let artist: String?
+    let year: Int?
+    let medium: String?
+    let dimensions: String?
 
     enum CodingKeys: String, CodingKey {
         case artworkID = "id"

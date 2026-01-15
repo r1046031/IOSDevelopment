@@ -15,13 +15,13 @@ struct ExhibitionView: View {
         @Bindable var dataManager = dataManager
         
         VStack {
-            Text(exhibition.title)
-            Text(exhibition.description)
+            Text(exhibition.title ?? "")
+            Text(exhibition.description ?? "")
             Text("Artworks")
             List(exhibition.artworks, id: \.self) { artwork in
                 VStack {
-                    Text(artwork.title)
-                    Text(artwork.artist)
+                    Text(artwork.title ?? "")
+                    Text(artwork.artist ?? "")
                 }
                 .onTapGesture {
                     dataManager.route.append(.artwork(artwork))

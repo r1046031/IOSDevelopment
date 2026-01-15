@@ -12,11 +12,11 @@ struct ArtworkView: View {
     
     var body: some View {
         VStack {
-            Text(artwork.title)
-            Text(artwork.medium)
-            Text(artwork.dimensions)
-            Text("\(artwork.year)")
-            Text(artwork.artist)
+            Text(artwork.title!)
+            Text(artwork.medium!)
+            Text(artwork.dimensions!)
+            Text("\(artwork.year!)")
+            Text(artwork.artist!)
         }
     }
 }
