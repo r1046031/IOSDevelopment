@@ -33,7 +33,11 @@ struct CarDetailView: View {
             favorite = dataManager.isInFavorites()
         }
         .onChange(of: favorite) {
-            dataManager.addToFavorites()
+            if(favorite) {
+                  dataManager.addToFavorites()
+            } else {
+                  dataManager.removeFromFavorites()
+            }
         }
     }
 }
