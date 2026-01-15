@@ -32,6 +32,12 @@ class DataManager {
             favorites.append(selectedCar)
         }
     }
+
+    func removeFromFavorites() {
+        if let selectedCar = selectedCar {
+            favorites.removeAll { car in car == selectedCar }
+        }
+    }
 }
 
 enum Filter {
