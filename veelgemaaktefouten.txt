@@ -57,3 +57,6 @@ met een path
     .ontapgesture
         append to path
     .navigationdestination
+
+font size
+.font(.system(size: 24))
