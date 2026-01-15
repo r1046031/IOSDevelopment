@@ -60,3 +60,12 @@ met een path
 
 font size
 .font(.system(size: 24))
+
+picker
+//        Picker("Filter", selection: $dataManager.selectedFilter) {
+//            Text("Alle").tag("Alle")
+//            Text("Benzine").tag("Benzine")
+//            Text("Elektrisch").tag("Elektrisch")
+//        }
+//        .pickerStyle(.segmented)
+//        .padding(.horizontal)
